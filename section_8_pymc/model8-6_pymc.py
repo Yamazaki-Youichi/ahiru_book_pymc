@@ -18,7 +18,10 @@ n_cluster = len(df["GID"].unique())
 
 basic_model = Model()
 
-#model8-5の業界毎の分散を追加
+#shape = クラスの数の確率変数に、クラスの値を取るデータ数次元のベクトルを入れる操作がありますが
+#その詳細な説明は(https://pymc-devs.github.io/pymc3/notebooks/GLM-hierarchical.html)参照
+
+#model8-5に業界毎の分散を追加
 with basic_model:
     #全体平均
     a_0 = Normal('a_0', mu=0, sd=10)

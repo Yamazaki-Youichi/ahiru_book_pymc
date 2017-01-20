@@ -8,7 +8,7 @@ from scipy import optimize
 from pymc3 import traceplot
 from pymc3 import summary
 
-##階層モデル
+
 df = pd.read_csv("data/data-salary-3.txt")
 X_data = df.values[:,0]
 Y_data = df.values[:,1]
@@ -18,6 +18,10 @@ n_company = len(df["KID"].unique())
 n_cluster = len(df["GID"].unique())
 
 basic_model = Model()
+
+#shape = クラスの数の確率変数に、クラスの値を取るデータ数次元のベクトルを入れる操作がありますが
+#その詳細な説明は(https://pymc-devs.github.io/pymc3/notebooks/GLM-hierarchical.html)参照
+
 
 with basic_model:
     #全体平均

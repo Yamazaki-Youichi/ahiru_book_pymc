@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from pymc3 import Model, Normal, HalfNormal,Lognormal,Bernoulli
+from pymc3 import Model, Normal, HalfNormal,Lognormal
 from pymc3 import NUTS, sample
 from scipy import optimize
 from pymc3 import traceplot
@@ -40,7 +40,8 @@ A =  df_main.values[:,4].astype(np.float32)
 Score = df_main.values[:,5].astype(np.float32)
 
 
-
+#shape = クラスの数の確率変数に、クラスの値を取るデータ数次元のベクトルを入れる操作がありますが
+#その詳細な説明は(https://pymc-devs.github.io/pymc3/notebooks/GLM-hierarchical.html)参照
 
 basic_model = Model()
 
@@ -64,7 +65,7 @@ with basic_model:
     b_student_variance = Normal('b_student',mu=0, sd=s_p, shape=n_student)
     x_student = tt.dot(b_2,A) + tt.dot(b_3,Score) + b_student_variance[P_ID]
     
-    #likelihood
+    #likelihood (NormalをBernoulliにするとNUTSにできないので、分散がほとんどない正規分布で対処.)
     x = b_1 + x_student + x_course + x_weather
     Y_obs = Normal('Y_obs', mu=tt.nnet.sigmoid(x), sd=0.00001, observed=Y)
     

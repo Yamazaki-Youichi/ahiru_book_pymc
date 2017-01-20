@@ -8,6 +8,8 @@ from scipy import optimize
 from pymc3 import traceplot
 from pymc3 import summary
 
+#shape = クラスの数の確率変数に、クラスの値を取るデータ数次元のベクトルを入れる操作がありますが
+#その詳細な説明は(https://pymc-devs.github.io/pymc3/notebooks/GLM-hierarchical.html)参照
 
 df = pd.read_csv("data-salary-2.txt")
 X_data = df.values[:,0]
