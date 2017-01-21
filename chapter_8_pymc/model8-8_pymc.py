@@ -24,12 +24,12 @@ df_main.loc[(df_main.Weather == "C" ),"Weather"] = 1
 
 #メインデータフレームにバイトの有無をコピー
 df_main["part_time"] = df_main["Y"]
-for i in list(range(n_student)):
+for i in range(n_student):
     df_main.loc[(df_main.PersonID == i+1 ),"part_time"] = df_student["A"].values[i]
 
 #メインデータフレームにScoreをコピー
 df_main["Score"] = df_main["Y"]
-for i in list(range(n_student)):
+for i in range(n_student):
     df_main.loc[(df_main.PersonID == i+1 ),"Score"] = df_student["Score"].values[i]
 
 P_ID = df_main.values[:,0].astype(np.int32) -1

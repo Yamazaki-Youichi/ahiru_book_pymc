@@ -35,7 +35,7 @@ with basic_model:
     mu = tt.zeros((n_times))
     mu = tt.set_subtensor(mu[0], mu_0)
     mu = tt.set_subtensor(mu[1], mu_1)
-    for i in list(range(n_times-2)):
+    for i in range(n_times-2):
         mu = tt.set_subtensor(mu[i+2], 2*mu[i+1] - mu[i] + e_mu[i])
     #likelihood
     Y_obs = Normal('Y_obs', mu=mu, sd=s_Y, observed=Y)

@@ -33,16 +33,16 @@ with basic_model:
     #季節process 
     ##まず初期状態の代入
     season = tt.zeros((n_times))
-    for i in list(range(L-1)):
+    for i in range(L-1):
         season = tt.set_subtensor(season[i], season_0_1_2[i])
     
     ##初期状態以降の代入
-    for t in list(range(n_times - 3)):
+    for t in range(n_times - 3):
         # sum^{L-1}_{l=1} -season[t-l] のテンソルを作成
         Sigma = tt.zeros((1))
-        for l in list(range(L-1)):
+        for l in range(L-1):
             Sigma +=  season[(t+3)-l]        
-        ##時刻 t+3 に(誤差なし)状態を代入
+        ##時刻 t+3 での(誤差なし)状態を代入
         season =tt.set_subtensor(season[t+3], -Sigma[0])  
     ##最後に誤差を追加
     season = Normal("season", mu=season , sd=s_season, shape=n_times)

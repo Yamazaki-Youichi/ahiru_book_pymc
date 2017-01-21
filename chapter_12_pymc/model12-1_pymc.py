@@ -36,7 +36,7 @@ with basic_model:
     
     mu = tt.zeros((n_times))
     mu = tt.set_subtensor(mu[0], mu_0)
-    for i in list(range(n_times-1)):
+    for i in range(n_times-1):
         mu = tt.set_subtensor(mu[i+1], mu[i]+e_mu[i])
 
     #likelihood
