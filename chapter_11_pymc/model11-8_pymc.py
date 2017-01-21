@@ -37,7 +37,10 @@ with basic_model:
     
     H = Categorical("tes", p=person_to_item, shape=(1117), observed=Items)
 
-    #サンプリング
+    #サンプリング #パラメータの数が多く、ローカルで実行するには重いのでサンプリング数はかなり少なくしてます。
+    #もしサンプル数を大きくしたければ、HのCategoricalを連続値にしてADVIをおすすめします。
+    #連続値にするには、log-likelihoodを自分で定義すれば良いですが、その方法は下記に。
+    #https://pymc-devs.github.io/pymc3/notebooks/lda-advi-aevb.html
     step = CategoricalGibbsMetropolis(vars=[H])
     trace = sample(12, init=None, step=step)
     summary(trace)
