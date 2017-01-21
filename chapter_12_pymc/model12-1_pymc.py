@@ -19,7 +19,10 @@ n_times = len(df["X"].unique())
 
 basic_model = Model()
 
+
 #GaussianRandomWalkを使う方法と使わない方法どちらも実装しました。
+#subtensorの使い方↓
+#http://deeplearning.net/software/theano/library/tensor/basic.html
 
 #GaussianRandomWalkを使わない方法
 with basic_model:

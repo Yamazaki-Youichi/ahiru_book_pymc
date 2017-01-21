@@ -19,8 +19,9 @@ n_times = len(df["X"].unique())
 
 basic_model = Model()
 
+#subtensorの使い方↓
+#http://deeplearning.net/software/theano/library/tensor/basic.html
 
-#GaussianRandomWalkを使わない方法
 with basic_model:
     #事前分布
     s_mu = HalfNormal('s_mu', sd=100) #隣接時刻の状態の誤差
